@@ -1,0 +1,24 @@
+{
+  "id": "B",
+  "name": "Model B: duplicates removed from overlap",
+  "algo": "Random Forest",
+  "split": "Identical rows kept on the same side of the split.",
+  "accuracy": 0.7866,
+  "recall_fail": 0.73,
+  "precision_fail": 0.824,
+  "f1_macro": 0.786,
+  "roc_auc": 0.869,
+  "test_rows": 717,
+  "test_rows_with_copy_in_train": 0,
+  "cutoff": 0.5,
+  "mapping": {
+    "High": "Pass",
+    "Low": "Fail"
+  },
+  "confusion": {
+    "fail_fail": 262,
+    "fail_pass": 97,
+    "pass_fail": 56,
+    "pass_pass": 302
+  }
+}

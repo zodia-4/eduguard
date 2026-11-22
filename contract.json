@@ -1,0 +1,102 @@
+{
+  "version": "1.1.0",
+  "tables": [
+    "data.csv"
+  ],
+  "joins": [],
+  "row_meaning": "One student-course record of LMS activity counts at midterm. No student ID; augmented copies exist.",
+  "prediction_time": "midterm",
+  "inputs": {
+    "Submission.Actions": {
+      "type": "int",
+      "min": 0,
+      "max": 1000
+    },
+    "Quiz.Actions": {
+      "type": "int",
+      "min": 0,
+      "max": 5000
+    },
+    "Forum.Actions": {
+      "type": "int",
+      "min": 0,
+      "max": 5000
+    },
+    "Create.Actions": {
+      "type": "int",
+      "min": 0,
+      "max": 5000
+    },
+    "Read.Actions": {
+      "type": "int",
+      "min": 0,
+      "max": 10000
+    },
+    "Update.Actions": {
+      "type": "int",
+      "min": 0,
+      "max": 5000
+    },
+    "Delete.Actions": {
+      "type": "int",
+      "min": 0,
+      "max": 1000
+    },
+    "Days.Logged.In": {
+      "type": "int",
+      "min": 0,
+      "max": 120
+    }
+  },
+  "missing_values": "reject",
+  "features": {
+    "Total": "sum of 7 *.Actions",
+    "Per_day": "Total / (Days.Logged.In + 1)",
+    "Read_per_day": "Read.Actions / (Days.Logged.In + 1)",
+    "Sub_ratio": "Submission.Actions / (Total + 1)",
+    "Quiz_ratio": "Quiz.Actions / (Total + 1)",
+    "Read_ratio": "Read.Actions / (Total + 1)"
+  },
+  "source_target": {
+    "column": "rating",
+    "values": [
+      "High",
+      "Low"
+    ],
+    "meaning": "Midterm rating category (MP2). Not defined as pass/fail."
+  },
+  "app_target": {
+    "values": [
+      "Pass",
+      "Fail"
+    ],
+    "mapping": {
+      "High": "Pass",
+      "Low": "Fail"
+    },
+    "mapping_source": "Instructor confirmed, 2026-11-21"
+  },
+  "weekly_log": {
+    "purpose": "Demo only. Fictional students. Never used to train or test the model.",
+    "row_meaning": "One fictional student's LMS activity in one week.",
+    "id": "Student.ID",
+    "info_fields": [
+      "Student.Name",
+      "Class"
+    ],
+    "week_col": "Week",
+    "weeks": [
+      1,
+      8
+    ],
+    "midterm_week": 8,
+    "per_week_max": {
+      "Days.Logged.In": 7
+    },
+    "rules": [
+      "one row per Student.ID per Week (duplicates rejected)",
+      "midterm totals = sum of weeks 1-8 per student, then normal input rules apply",
+      "model predicts only for students with all 8 weeks"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "A",
+  "name": "Model A: duplicates kept",
+  "algo": "Extra Trees",
+  "split": "Random 80/20 split. Copies can be in both train and test.",
+  "accuracy": 0.9071,
+  "recall_fail": 0.925,
+  "precision_fail": 0.893,
+  "f1_macro": 0.907,
+  "roc_auc": 0.966,
+  "test_rows": 721,
+  "test_rows_with_copy_in_train": 245,
+  "cutoff": 0.5,
+  "mapping": {
+    "High": "Pass",
+    "Low": "Fail"
+  },
+  "confusion": {
+    "fail_fail": 334,
+    "fail_pass": 27,
+    "pass_fail": 40,
+    "pass_pass": 320
+  }
+}
